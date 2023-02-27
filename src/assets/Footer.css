@@ -1,0 +1,31 @@
+footer {
+    padding: 1.5rem 5%;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+  
+}
+  
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    footer {
+        padding: 1.5rem 10% !important;
+        grid-template-columns: auto 1fr 1fr 1fr;
+    }
+}
+  
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    footer {
+        padding: 1.5rem 20% !important;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+  
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  
+}

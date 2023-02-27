@@ -1,0 +1,37 @@
+.testimonials-section {
+    padding: 1.5rem 5%;
+}
+
+.testimonials {
+    grid-template-columns: 1fr;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+  
+}
+  
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .testimonials-section {
+        padding: 1.5rem 10% !important;
+    }
+    .testimonials {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+  
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .testimonials-section {
+        padding: 1.5rem 20% !important;
+    }
+    .testimonials {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+  
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  
+}
