@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const styles = {
     borderRadius: '.5rem',
     backgroundColor: '#F4CE14',
@@ -12,9 +14,9 @@ const styles = {
 function Button({type = 'default', children, href="#", style, ...props}) {
 
     return (
-        <a href={href} style={{...styles, ...style}} {...props}>
+        <Link to={href} style={{...styles, ...style}} {...props}>
             {children}
-        </a>
+        </Link>
     )
 }
 

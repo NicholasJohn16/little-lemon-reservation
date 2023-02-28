@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const styles = {
     list: {
         listStyleType: 'none',
@@ -22,12 +24,12 @@ function Nav({showMenu}) {
     return ( 
         <nav style={{...{textAlign: 'right'}, ...display}}>
             <menu style={styles.list}>
-                <li style={styles.item}><a style={styles.link} href="/home">Home</a></li>
-                <li style={styles.item}><a style={styles.link} href="/about">About</a></li>
-                <li style={styles.item}><a style={styles.link} href="/menu">Menu</a></li>
-                <li style={styles.item}><a style={styles.link} href="/reservation">Reservations</a></li>
-                <li style={styles.item}><a style={styles.link} href="/order">Order Online</a></li>
-                <li style={styles.item}><a style={styles.link} href="/login">Login</a></li>
+                <li style={styles.item}><Link style={styles.link} to="/">Home</Link></li>
+                <li style={styles.item}><Link style={styles.link} to="/about">About</Link></li>
+                <li style={styles.item}><Link style={styles.link} to="/menu">Menu</Link></li>
+                <li style={styles.item}><Link style={styles.link} to="/reservations">Reservations</Link></li>
+                <li style={styles.item}><Link style={styles.link} to="/order">Order Online</Link></li>
+                <li style={styles.item}><Link style={styles.link} to="/login">Login</Link></li>
             </menu>
         </nav>
     )

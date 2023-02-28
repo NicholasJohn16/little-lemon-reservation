@@ -5,6 +5,7 @@ import '../assets/Header.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const styles = {
     header: {
@@ -38,9 +39,9 @@ function Header() {
 
     return (
         <header className="header" style={styles.header}>
-            <a href="/">
+            <Link to="/">
                 <img style={styles.logo} src={logo} alt="Little Lemon Logo" />
-            </a>
+            </Link>
 
             <Nav showMenu={showMenu} />
 

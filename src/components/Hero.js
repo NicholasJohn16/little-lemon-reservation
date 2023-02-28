@@ -47,7 +47,7 @@ function Hero() {
                 <p style={styles.p}>We are a family owned Mediterranean restaurant, focused on 
                     traditional recipes served with a modern twist.</p>
 
-                <Button style={{display: 'inline-block'}} href="/reservation">Reserve a Table</Button>
+                <Button style={{display: 'inline-block'}} href="/reservations">Reserve a Table</Button>
             </div>
 
             <img style={styles.img} src={resturantFood} alt="Food served on board" />

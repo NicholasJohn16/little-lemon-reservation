@@ -1,5 +1,6 @@
 import logo from '../assets/footer-logo.png';
 import '../assets/Footer.css';
+import { Link } from 'react-router-dom';
 
 const styles = {
     footer: {
@@ -32,17 +33,19 @@ function Footer() {
     return ( 
         <footer style={styles.footer}>
             <div>
-                <img src={logo} alt="Little Lemon Logo" />
+                <Link to="/">
+                    <img src={logo} alt="Little Lemon Logo" />
+                </Link>
             </div>
             <div>
                 <h4 style={styles.h4}>Navigation</h4>
                 <ul style={styles.list}>
-                    <li style={styles.item}><a style={styles.link} href="/home">Home</a></li>
-                    <li style={styles.item}><a style={styles.link} href="/about">About</a></li>
-                    <li style={styles.item}><a style={styles.link} href="/menu">Menu</a></li>
-                    <li style={styles.item}><a style={styles.link} href="/reservation">Reservations</a></li>
-                    <li style={styles.item}><a style={styles.link} href="/order">Order Online</a></li>
-                    <li style={styles.item}><a style={styles.link} href="/login">Login</a></li>
+                    <li style={styles.item}><Link style={styles.link} to="/">Home</Link></li>
+                    <li style={styles.item}><Link style={styles.link} to="/about">About</Link></li>
+                    <li style={styles.item}><Link style={styles.link} to="/menu">Menu</Link></li>
+                    <li style={styles.item}><Link style={styles.link} to="/reservation">Reservations</Link></li>
+                    <li style={styles.item}><Link style={styles.link} to="/order">Order Online</Link></li>
+                    <li style={styles.item}><Link style={styles.link} to="/login">Login</Link></li>
                 </ul>
             </div>
             <div>
