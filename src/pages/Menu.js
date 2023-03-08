@@ -1,6 +1,9 @@
+import Specials from '../components/Specials';
+
 function Menu() {
+    
     return (
-        <h1>Menu</h1>
+        <Specials />
     )
 }
 
