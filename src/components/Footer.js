@@ -6,7 +6,7 @@ const styles = {
     footer: {
         display: 'grid',
         // gridTemplateColumns: '1fr 2fr 2fr 2fr',
-        padding: '3rem 20%',
+        // padding: '3rem 20%',
         backgroundColor: '#333',
         color: '#FFF'
     },
