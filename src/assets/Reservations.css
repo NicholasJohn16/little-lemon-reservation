@@ -1,0 +1,27 @@
+.reservation-form {
+    padding: 0 5%;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { 
+  
+}
+  
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .reservation-form {
+        padding: 0 10% !important;
+    }
+}
+  
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .reservation-form {
+        padding: 0 20% !important;
+    }
+}
+  
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+  
+}
