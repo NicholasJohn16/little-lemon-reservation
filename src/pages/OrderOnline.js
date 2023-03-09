@@ -1,6 +1,12 @@
+import '../assets/Specials.css';
+
 function OrderOnline() {
     return (
-        <h1>Order Online</h1>
+        <section className="specials">
+            <h1>Order Online</h1>
+
+            <h2>Coming soon!!</h2>
+        </section>
     )
 }
 
