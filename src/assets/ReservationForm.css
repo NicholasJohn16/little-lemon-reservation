@@ -52,3 +52,7 @@
 @media (min-width: 1200px) {
   
 }
+
+input:invalid {
+    border: 1px solid red !important;
+}

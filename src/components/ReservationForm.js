@@ -2,6 +2,7 @@ import { useState, useEffect, useReducer, useRef } from "react";
 import OccasionSelector from "./OccasionSelector";
 import { fetchAPI, submitAPI } from "../utils/api";
 import '../assets/ReservationForm.css';
+import { useNavigate } from "react-router-dom";
 
 const styles = {
     form: {
@@ -46,7 +47,7 @@ const styles = {
     },
     helpText: {
         fontSize: '.75rem',
-        color: '#999',
+        color: '#000',
         margin: '.5rem 0 0 0'
     },
     button: {
@@ -81,12 +82,14 @@ function initializeTimes(date) {
 }
 
 const ReservationForm = () => {
-    const [ data, setData ] = useState({guest_count: 1});
+    const [ data, setData ] = useState({guest_count: 1, comments: ""});
     const date = new Date();
     const min = date.getFullYear() + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-'  + ("0" + date.getDate()).slice(-2);
     const max = (date.getFullYear() + 1) + '-' + ("0" + (date.getMonth() + 1)).slice(-2) + '-'  + ("0" + date.getDate()).slice(-2);
     const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes(date));
     const formRef = useRef();
+    const navigate = useNavigate();
+    
 
     // const allTimes = ['17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00', '22:30', '23:00', '23:30'];
 
@@ -111,9 +114,10 @@ const ReservationForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formData = new FormData(formRef.current);
+        console.log(formData);
 
         if(submitAPI(formData)) {
-
+            navigate('confirmed', {state: formData});
         }
     }
 
@@ -124,25 +128,32 @@ const ReservationForm = () => {
     // }, [data.date]);
 
     return (
-        <form style={styles.form} action="" ref={formRef} onSubmit={handleSubmit}>
+        <form style={styles.form} ref={formRef} onSubmit={handleSubmit}>
             <div className="span-4 span-md-2 span-lg-1">
                 <label style={styles.label} htmlFor="first_name">First Name</label>
-                <input style={styles.input} onChange={e => updateFormData('first_name', e.target.value)} type="text" id="first_name" name="first_name" />
+                <input style={styles.input} onChange={e => updateFormData('first_name', e.target.value)} type="text" id="first_name" name="first_name" required />
             </div>
 
             <div className="span-4 span-md-2 span-lg-1">
                 <label style={styles.label} htmlFor="last_name">Last Name</label>
-                <input style={styles.input} onChange={e => updateFormData('last_name', e.target.value)} type="text" id="last_name" name="last_name" />
+                <input style={styles.input} onChange={e => updateFormData('last_name', e.target.value)} type="text" id="last_name" name="last_name" required/>
             </div>
 
             <div className="span-4 span-md-2 span-lg-1">
                 <label style={styles.label} htmlFor="phone_number">Phone Number</label>
-                <input style={styles.input} onChange={e => updateFormData('phone_number', e.target.value)} type="tel" id="phone_number" name="phone_number" />
+                <input 
+                    style={styles.input} 
+                    onChange={e => updateFormData('phone_number', e.target.value)} 
+                    type="tel" 
+                    id="phone_number" 
+                    name="phone_number" 
+                    pattern="[0-9]{10}"
+                    required />
             </div>
 
             <div className="span-4 span-md-2 span-lg-1">
                 <label style={styles.label} htmlFor="email">E-mail</label>
-                <input style={styles.input} onChange={e => updateFormData('email', e.target.value)} type="text" id="email" name="email" />
+                <input style={styles.input} onChange={e => updateFormData('email', e.target.value)} type="text" id="email" name="email" required />
             </div>
 
             <div className="span-4 span-md-2 span-lg-2">
@@ -163,12 +174,12 @@ const ReservationForm = () => {
 
             <div className="span-2 span-md-1">
                 <label style={styles.label} htmlFor="date">Date</label>
-                <input style={styles.input} onChange={handleDateChange} defaultValue={min} min={min} max={max} type="date" id="date" name="date" />
+                <input style={styles.input} onChange={handleDateChange} defaultValue={min} min={min} max={max} type="date" id="date" name="date" required />
             </div>
 
             <div className="span-2 span-md-1">
                 <label style={styles.label} htmlFor="time">Time</label>
-                <select id="time" name="time" value={data.time} onChange={e => updateFormData('time', e.target.value)} style={styles.select}>
+                <select id="time" name="time" value={data.time} onChange={e => updateFormData('time', e.target.value)} style={styles.select} required>
                     <option value="">Select a time</option>
                     {availableTimes && availableTimes.map(time => (
                         <option value={time} key={time}>{time}</option>
@@ -177,8 +188,8 @@ const ReservationForm = () => {
             </div>
 
             <div className="span-4 span-lg-2">
-                <label style={styles.label} htmlFor="time">Occasion</label>
-                <OccasionSelector setOccasion={setOccasion} />
+                <label style={styles.label} id="occasion-label">Occasion</label>
+                <OccasionSelector aria-labelledby="occasion-label" setOccasion={setOccasion} />
             </div>
 
             <div className="span-4">
@@ -186,7 +197,9 @@ const ReservationForm = () => {
                 <textarea 
                     onChange={e => updateFormData('comments', e.target.value)}
                     style={styles.textarea} 
+                    max="256"
                     name="comments" id="comments"></textarea>
+                <p style={styles.helpText}>{data.comments.length > 256 ? 'Too Long!!' : (256 - data.comments.length) + " Characters Left"}</p>
             </div>
 
             <div className="span-4">
